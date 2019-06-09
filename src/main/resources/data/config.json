@@ -1,0 +1,47 @@
+{
+	"module":"user",
+	"moduleName":"按钮",
+	"title": "按钮管理",
+	"pc": {
+		"columns":[{
+			"text":"公积金起缴日期 ",
+			"dataindex":"fundPayStartDate"
+		},{
+			"text":"社保单位比率",
+			"dataindex":"insuranceCompanyPercentage"
+		},{
+			"text":"社保个人比例",
+			"dataindex":"insurancePersonalPercentage"
+		},{
+			"text":"商业补充险",
+			"dataindex":"businessSupplementInsurance"
+		},{
+			"text":"社保办理年月",
+			"dataindex":"insuranceYearMonth"
+		},{
+			"text":"公积金办理年月",
+			"dataindex":"fundYearMonth"
+		},{
+			"text":"社保最后缴费月",
+			"dataindex":"lastMonthPayInsurance"
+		},{
+			"text":"公积金最后缴费月",
+			"dataindex":"lastMonthPayFund"
+		},{
+			"text":"社保停缴月",
+			"dataindex":"stopMonthPayInsurance"
+		},{
+			"text":"公积金停缴月",
+			"dataindex":"stopMonthPayFund"
+		},{
+			"text":"社保转出月",
+			"dataindex":"rollOutMonthInsurance"
+		},{
+			"text":"公积金转出月",
+			"dataindex":"rollOutMonthFund"
+		},{
+			"text":"公积金分存月",
+			"dataindex":"distributeStoreMonthFund"
+		}]
+	}
+}

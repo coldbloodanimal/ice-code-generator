@@ -1,0 +1,10 @@
+[{
+	"name":"model1",
+	"products":[{
+		"name":"product1"
+	},{
+		"name":"product2"
+	}]
+},{
+	"name":"model2"
+}]

@@ -1,0 +1,42 @@
+{
+	"module":"menu",
+	"moduleName":"菜单",
+	"title": "菜单管理",
+	"pc": {
+		"columns":[{
+			"text":"id",
+			"dataindex":"id",
+			"editable":false
+		},{
+			"text":"编码",
+			"dataindex":"menuCode",
+			"search":true
+		},{
+			"text":"名称",
+			"dataindex":"menuName",
+			"search":true
+		},{
+			"text":"菜单url",
+			"dataindex":"menuUrl"
+		},{
+			"text":"菜单描述",
+			"dataindex":"description",
+			"search":true
+		},{
+			"text":"排序序号",
+			"dataindex":"menuNumber"
+		},{
+			"text":"菜单图片",
+			"dataindex":"menuImage"
+			
+		},{
+			"text":"创建人",
+			"dataindex":"updateUser",
+			"editable":false
+		},{
+			"text":"创建时间",
+			"dataindex":"updateTime",
+			"editable":false
+		}]
+	}
+}
