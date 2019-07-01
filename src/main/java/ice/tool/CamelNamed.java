@@ -6,10 +6,11 @@ import java.util.regex.Pattern;
 public class CamelNamed {
 	
 	public static void main(String[] args) throws Exception {
-		String s="personal_grow	development_opportunities	work_atmosphere	overtime_quit_rest";
-		String result=allCamelsql(s,null,"f");
-		System.out.println(result);
-		pcamel(s);
+		String s="ID\tACTIVITY_ID\tSKU1\tSKU2\tCREATE_TIME\tCREATE_USER\tPRODUCT_ID\tREBATE_TYPE\tREBATE";
+		//String result=allCamelsql(s,null,"f");
+		sqlCamelGood(s,"\t","d");
+
+		//pcamel(s);
 	}
 	
 	/**
@@ -63,6 +64,21 @@ public class CamelNamed {
 			System.out.print(","+camel(p));
 		}
 		
+	}
+
+	/**
+	 * 字符串数组改为骆驼命名,for mybatis
+	 *
+	 * ID,USER_ID,USER_NAME
+	 * p.ID as id，p.USER_ID as userId ,p.USER_NAME as userName
+	 * */
+	public static void sqlCamelGood(String s,String split,String alias){
+		String[] ss=s.split(split);
+		for(String p:ss){
+			p=p.trim();
+			System.out.print(alias+"."+p+" as "+camel(p)+" ,");
+		}
+
 	}
 	
 }

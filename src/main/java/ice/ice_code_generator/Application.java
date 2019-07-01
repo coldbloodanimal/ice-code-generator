@@ -52,7 +52,7 @@ public class Application
         /* Create and adjust the configuration singleton */
     	JdbcTemplate jdbcTemplate=application.getBean(JdbcTemplate.class);
         String table_schema="weimall";
-        String tablename="mall_refund";
+        String tablename="mall_product_category";
     	Map<String, Object> tableInfoFromDB=getTableInfoFromDB(jdbcTemplate,table_schema,tablename);
 
 
