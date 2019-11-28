@@ -19,7 +19,7 @@ public class ${module_name}ServiceImpl implements I${module_name}Service{
 
     @Override
     public int delete(Long id) {
-    	return ${module_name?uncap_first}Mapper.deleteByPrimaryKey(record);
+    	return ${module_name?uncap_first}Mapper.deleteByPrimaryKey(id);
     }
 
     @Override

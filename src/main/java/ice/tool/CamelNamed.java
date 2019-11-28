@@ -6,9 +6,9 @@ import java.util.regex.Pattern;
 public class CamelNamed {
 	
 	public static void main(String[] args) throws Exception {
-		String s="ID\tACTIVITY_ID\tSKU1\tSKU2\tCREATE_TIME\tCREATE_USER\tPRODUCT_ID\tREBATE_TYPE\tREBATE";
-		//String result=allCamelsql(s,null,"f");
-		sqlCamelGood(s,"\t","d");
+		String s="ID\tENTERPRISE_ID\tMALL_ID\tMALL_NAME\tPROVINCE\tCITY\tREGION\tTOWN\tPROVINCE_CODE\tCITY_CODE\tREGION_CODE\tTOWN_CODE\tCREATE_TIME\tCREATE_USER";
+		String result=allCamelsql(s,"\t","zzzzzzzzzzzzzz");
+		sqlCamelGood(s,"\t","l");
 
 		//pcamel(s);
 	}
