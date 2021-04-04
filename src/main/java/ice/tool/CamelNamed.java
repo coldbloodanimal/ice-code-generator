@@ -1,18 +1,24 @@
 package ice.tool;
 
+import org.springframework.util.ObjectUtils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CamelNamed {
-	
-	public static void main(String[] args) throws Exception {
-		String s="ID\tENTERPRISE_ID\tMALL_ID\tMALL_NAME\tPROVINCE\tCITY\tREGION\tTOWN\tPROVINCE_CODE\tCITY_CODE\tREGION_CODE\tTOWN_CODE\tCREATE_TIME\tCREATE_USER";
-		String result=allCamelsql(s,"\t","zzzzzzzzzzzzzz");
-		sqlCamelGood(s,"\t","l");
 
+	public static void main(String[] args) throws Exception {
+		String s="csup_id\tsup_name\tshort_name\tprovince\tcity\tcounty\taddress\twebsite\tcontact_person\tphone\tsup_logo\tis_three_cert\tcheck_state\tcheck_date\tcheck_note\tspell_code\twbx_code\toper_name\toper_date\tis_stop\ttaxpayer\tbank\taccount\tload_date\tnote";
+		//pure(s,"\t");
+		System.out.println();
+
+		alias(s,"\t","d");
+		System.out.println();
+		sqlCamelGood(s,"\t","d");
+		System.out.println();
 		//pcamel(s);
 	}
-	
+
 	/**
 	 * @param s传入的字符串
 	 * @param split分隔符
@@ -26,7 +32,7 @@ public class CamelNamed {
 		}
 		return sb.toString();
 	}
-	
+
 	/**
 	 * @param s传入的字符串
 	 * @param split分隔符
@@ -40,7 +46,7 @@ public class CamelNamed {
 		}
 		return sb.toString();
 	}
-	
+
 	/**
 	 * 下划线命名改为骆驼命名
 	 * */
@@ -63,7 +69,7 @@ public class CamelNamed {
 		for(String p:ss){
 			System.out.print(","+camel(p));
 		}
-		
+
 	}
 
 	/**
@@ -80,5 +86,32 @@ public class CamelNamed {
 		}
 
 	}
-	
+
+	/**
+	 * 打印纯粹的列
+	 * */
+	public static void pure(String s ,String split){
+		String[] ss=s.split(split);
+		for(String p:ss){
+			p=p.trim();
+			System.out.print(p+" ,");
+		}
+	}
+
+	/**
+	 * 加别名
+	 * */
+	public static void alias(String s ,String split,String alias){
+		String[] ss=s.split(split);
+		for(String p:ss){
+			p=p.trim();
+			if (ObjectUtils.isEmpty(alias)) {
+				System.out.print(p+" ,");
+			}else {
+				System.out.print(alias+"."+p+" ,");
+			}
+
+		}
+	}
+
 }

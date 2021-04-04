@@ -12,8 +12,8 @@ public class ${module_name}ServiceImpl implements I${module_name}Service{
     ${module_name}Mapper ${module_name?uncap_first}Mapper;
 
     @Override
-    public ${module_name_entity} insert(${module_name_entity} record) {
-        ${module_name?uncap_first}Mapper.insert(record);
+    public ${module_name} insert(${module_name} record) {
+        ${module_name?uncap_first}Mapper.insertSelective(record);
         return record;
     }
 
@@ -23,7 +23,7 @@ public class ${module_name}ServiceImpl implements I${module_name}Service{
     }
 
     @Override
-    public ${module_name_entity} update(${module_name_entity} record) {
+    public ${module_name} update(${module_name} record) {
         ${module_name?uncap_first}Mapper.updateByPrimaryKeySelective(record);
         return record;
     }

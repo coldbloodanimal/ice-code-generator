@@ -23,6 +23,8 @@ public class DataTypeConverter {
             return "Date";
         }else if(input.contains("varchar")){
             return "String";
+        }else if(input.contains("date")){
+            return "Date";
         }
 
         return "";

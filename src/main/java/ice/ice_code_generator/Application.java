@@ -51,8 +51,8 @@ public class Application
 
         /* Create and adjust the configuration singleton */
     	JdbcTemplate jdbcTemplate=application.getBean(JdbcTemplate.class);
-        String table_schema="weimall_1.9.4";
-        String tablename="base_mall_location";
+        String table_schema="ecs";
+        String tablename="hos_sup_dict";
     	Map<String, Object> tableInfoFromDB=getTableInfoFromDB(jdbcTemplate,table_schema,tablename);
 
 
@@ -344,7 +344,7 @@ public class Application
 //        for(Map<String,Object> r:columns) {
 //        	System.out.println(r.get("COLUMN_NAME"));
 //        }
-//        
+//
         Map<String,Object> tableinfo = jdbcTemplate.queryForMap(tablesql,new Object[] { table_schema,tablename });
 
         result.put("columns", columns);
