@@ -1,10 +1,9 @@
 package ice.tool;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.sun.codemodel.JCodeModel;
-import org.jsonschema2pojo.*;
-import org.jsonschema2pojo.rules.RuleFactory;
 
-import java.io.File;
 import java.io.IOException;
 
 public class JsonToJava3 {
@@ -12,25 +11,19 @@ public class JsonToJava3 {
         JCodeModel codeModel = new JCodeModel();
 
 
-        String ss="{ \"returnCode\":\"状态码,详见第七章节\", \"returnMsg\":\"状态码说明\", \"totalPageCount\":\"总页数\", \"totalRecordCount\":\"总记录数量\", \"currentPageNumber\":\"当前页码\", \"successList\":[ { \"hospitalId\":\"医疗机构账号\", \"departmentID\":\"部门编号\", \"goodsID\":\"产品 Id\",\n" +
-                " \"sortName\":\"分类\", \"productNameFirst\":\"一级目录\", \"productNameSecond\":\"二级目录\", \"goodsName\":\"产品名\", \"outlookc\":\"规格\", \"goodsType\":\"型号\", \"unit\":\"单位\", \"provinceId\":\"市标产品码（cn 码）\", \"regcodeName\":\"注册证\", \"brand\":\"品牌\", \"source\":\"来源\", \"purchasePrice\":\"医疗机构设置采购价格\", \"companyIdTb\":\"投标企业编号\", \"companyNameTb\":\"投标企业\", \"companyIdPs\":\"医疗机构设置的配送商编号\", \"companyNamePs\":\"医疗机构设置的配送商\", \"purchaseType\":\"采购类别\", \"addTime\":\"添加时间\", \"lastUpDateTime\":\"最后更新时间\" } ],\"todayRemainVisitCount\":\"当日接口剩余访问次数\" }";
-        GenerationConfig config = new DefaultGenerationConfig() {
-            @Override
-            public boolean isGenerateBuilders() { // set config option by overriding method
-                return true;
-            }
-        };
+        String ss="[{\"field\":\"prod_name\",\"title\":\"产品名称\",\"width\":\"100px\",\"align\":\"left\",\"sort\":1},{\"field\":\"spec_name\",\"title\":\"规格型号\",\"width\":\"100px\",\"align\":\"left\",\"sort\":2},{\"field\":\"batch_no\",\"title\":\"生产批号\",\"width\":\"120px\",\"align\":\"left\",\"sort\":3},{\"field\":\"batch_date\",\"title\":\"生产日期\",\"width\":\"150px\",\"align\":\"left\",\"sort\":4},{\"field\":\"inva_date\",\"title\":\"有效期\",\"width\":\"120px\",\"align\":\"left\",\"sort\":5},{\"field\":\"unit_name\",\"title\":\"单位\",\"width\":\"60px\",\"align\":\"left\",\"sort\":6},{\"field\":\"price\",\"title\":\"单价\",\"width\":\"60px\",\"align\":\"right\",\"sort\":7},{\"field\":\"amount\",\"title\":\"配货数量\",\"width\":\"60px\",\"align\":\"right\",\"sum\":\"Y\",\"format\":\"#0\",\"sort\":8},{\"field\":\"amount_money\",\"title\":\"金额\",\"width\":\"80px\",\"align\":\"right\",\"sort\":9,\"sum\":\"Y\",\"format\":\"#,##0.00\"},{\"field\":\"disinfect_no\",\"title\":\"灭菌批号\",\"width\":\"150px\",\"align\":\"left\",\"sort\":10},{\"field\":\"disinfect_date\",\"title\":\"灭菌日期\",\"width\":\"150px\",\"align\":\"left\",\"sort\":10},{\"field\":\"fac_name\",\"title\":\"生产厂商\",\"width\":\"150px\",\"align\":\"left\",\"sort\":10},{\"field\":\"cert_code\",\"title\":\"材料证件信息\",\"width\":\"150px\",\"align\":\"left\",\"sort\":10}]";
 
-        SchemaMapper mapper = new SchemaMapper(new RuleFactory(config, new Jackson2Annotator(config), new SchemaStore()), new SchemaGenerator());
-        String className="ClassName";
-        mapper.generate(codeModel, className, "com.example", ss);
-        File projectFile=new File("");
-        String folderName=projectFile.getAbsolutePath()+"\\src\\main\\resources\\results";
-        File folder=new File(folderName);
-        System.out.println(folderName);
-        //codeModel.build(Files.createTempDirectory("required").toFile());
-        codeModel.build(folder);
-        //codeModel.build(folder);
+        JSONArray ja= JSONArray.parseArray(ss);
+        for (Object o : ja) {
+            JSONObject j= (JSONObject) o;
+            System.out.println("@PrintModelProperty(text=\""+j.getString("title").substring(0,j.getString("title").length())+"\"" +
+                    ",width=\""+j.getString("width").substring(0,j.getString("width").length())+"\""+
+                    ",align=\""+j.getString("align").substring(0,j.getString("align").length())+"\""+
+                    ",sort=\""+j.getString("sort").substring(0,j.getString("sort").length())+"\""+
+                    ")");
+            System.out.println("private "+"String "+j.getString("field")+";");
+        }
+
     }
 
 

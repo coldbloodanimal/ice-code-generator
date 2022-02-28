@@ -52,7 +52,7 @@ public class Application
         /* Create and adjust the configuration singleton */
     	JdbcTemplate jdbcTemplate=application.getBean(JdbcTemplate.class);
         String table_schema="ecs";
-        String tablename="hos_sup_dict";
+        String tablename="sup_contract_spec";
     	Map<String, Object> tableInfoFromDB=getTableInfoFromDB(jdbcTemplate,table_schema,tablename);
 
 

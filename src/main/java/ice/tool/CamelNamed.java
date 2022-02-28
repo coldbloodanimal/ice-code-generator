@@ -8,13 +8,14 @@ import java.util.regex.Pattern;
 public class CamelNamed {
 
 	public static void main(String[] args) throws Exception {
-		String s="csup_id\tsup_name\tshort_name\tprovince\tcity\tcounty\taddress\twebsite\tcontact_person\tphone\tsup_logo\tis_three_cert\tcheck_state\tcheck_date\tcheck_note\tspell_code\twbx_code\toper_name\toper_date\tis_stop\ttaxpayer\tbank\taccount\tload_date\tnote";
+		System.out.println(null==null);
+		String s="csup_id\tfac_id\tfac_name\tfac_type_code\tprovince\tcity\tcounty\taddress\tphone\tis_three_cert\tcheck_state\tcheck_date\tcheck_note\tspell_code\twbx_code\tis_stop\toper_name\toper_date\tload_date\tnote\tshort_name\twebsite\tcreate_time\tcreate_user\tupdate_time\tupdate_user\tlegal_rep\testablish_date\tcontact_person\tcategory_code\ttaxpayer";
 		//pure(s,"\t");
 		System.out.println();
 
-		alias(s,"\t","d");
+		alias(s,"\t","f");
 		System.out.println();
-		sqlCamelGood(s,"\t","d");
+		sqlCamelGood(s,"\t","f");
 		System.out.println();
 		//pcamel(s);
 	}
