@@ -14,14 +14,30 @@ public class JsonToJava {
         JCodeModel codeModel = new JCodeModel();
 
 
-        String ss="{\n" +
-                "\t\"file_name\": \"fed6a9d853e0873be8f.jpg\",\n" +
-                "\t\"file_name_o\": \"原文件名称.jpg\",\n" +
-                "\t\"file_type\": \".jpg\",\n" +
-                "\t\"file_path\": \"/file/img/\",\n" +
-                "\t\"file_size\": 220,\n" +
-                "\t\"size_unit\": \"KB\"\n" +
-                "}";
+        String ss="\t\t\t{\n" +
+                "\t\t\t\t\"id\": \"b94781dbd9891228aa9210600fdb4177\",\n" +
+                "\t\t\t\t\"current\": 0,\n" +
+                "\t\t\t\t\"size\": 0,\n" +
+                "\t\t\t\t\"parentId\": \"0\",\n" +
+                "\t\t\t\t\"ancestors\": \"[0]\",\n" +
+                "\t\t\t\t\"code\": \"org-person\",\n" +
+                "\t\t\t\t\"name\": \"组织人员\",\n" +
+                "\t\t\t\t\"type\": \"C\",\n" +
+                "\t\t\t\t\"router\": \"\",\n" +
+                "\t\t\t\t\"openType\": \"0\",\n" +
+                "\t\t\t\t\"frame\": false,\n" +
+                "\t\t\t\t\"cached\": true,\n" +
+                "\t\t\t\t\"visible\": true,\n" +
+                "\t\t\t\t\"icon\": \"hos-icon-menu\",\n" +
+                "\t\t\t\t\"weight\": 0,\n" +
+                "\t\t\t\t\"remark\": null,\n" +
+                "\t\t\t\t\"categoryLocation\": \"left\",\n" +
+                "\t\t\t\t\"pageProperties\": null,\n" +
+                "\t\t\t\t\"advancedJs\": null,\n" +
+                "\t\t\t\t\"category\": \"base\",\n" +
+                "\t\t\t\t\"hasPagePreset\": true,\n" +
+                "\t\t\t\t\"leaf\": false\n" +
+                "\t\t\t}";
         GenerationConfig config = new DefaultGenerationConfig() {
             @Override
             public boolean isGenerateBuilders() { // set config option by overriding method

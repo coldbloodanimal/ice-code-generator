@@ -19,6 +19,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.ResourceUtils;
 
 import com.google.gson.Gson;
@@ -51,8 +52,8 @@ public class Application
 
         /* Create and adjust the configuration singleton */
     	JdbcTemplate jdbcTemplate=application.getBean(JdbcTemplate.class);
-        String table_schema="ecs";
-        String tablename="sup_contract_spec";
+        String table_schema="test";
+        String tablename="world_user";
     	Map<String, Object> tableInfoFromDB=getTableInfoFromDB(jdbcTemplate,table_schema,tablename);
 
 
@@ -61,6 +62,7 @@ public class Application
     	Map<String, Object> map=getTableInfoFromConfig(cfg,configpath);
 
     	map=merge(map,tableInfoFromDB);
+		map.put("table_name",map.get("TABLE_NAME"));
 
     	for(String key:map.keySet()) {
     		System.out.println(key+":"+map.get(key));
@@ -105,6 +107,25 @@ public class Application
         FileWriterWithEncoding fileWriterWithEncoding = new FileWriterWithEncoding(file,"UTF-8");
         template.process(map, fileWriterWithEncoding);
 
+		//生成entity
+		template = cfg.getTemplate("pc_entity.ftlh");
+		fileName=folderName+"\\"+map.get("module_name")+"Entity.java";
+		System.out.println(fileName);
+		file=new File(fileName);
+		file.createNewFile();
+		// FileOutputStream fos=new FileOutputStream(PCMainFile);
+		fileWriterWithEncoding = new FileWriterWithEncoding(file,"UTF-8");
+		template.process(map, fileWriterWithEncoding);
+
+		//生成entity
+		template = cfg.getTemplate("pc_model.ftlh");
+		fileName=folderName+"\\"+map.get("module_name")+"Model.java";
+		System.out.println(fileName);
+		file=new File(fileName);
+		file.createNewFile();
+		// FileOutputStream fos=new FileOutputStream(PCMainFile);
+		fileWriterWithEncoding = new FileWriterWithEncoding(file,"UTF-8");
+		template.process(map, fileWriterWithEncoding);
 		//生成js
 		template = cfg.getTemplate("pc_service_zhongying.ftlh");
 		fileName=folderName+"\\I"+map.get("module_name")+"Service.java";
@@ -145,25 +166,7 @@ public class Application
         fileWriterWithEncoding = new FileWriterWithEncoding(file,"UTF-8");
         template.process(map, fileWriterWithEncoding);
 
-		//生成entity
-		template = cfg.getTemplate("pc_entity.ftlh");
-		fileName=folderName+"\\"+map.get("module_name")+"Entity.java";
-		System.out.println(fileName);
-		file=new File(fileName);
-		file.createNewFile();
-		// FileOutputStream fos=new FileOutputStream(PCMainFile);
-		fileWriterWithEncoding = new FileWriterWithEncoding(file,"UTF-8");
-		template.process(map, fileWriterWithEncoding);
 
-		//生成entity
-		template = cfg.getTemplate("pc_model.ftlh");
-		fileName=folderName+"\\"+map.get("module_name")+"Model.java";
-		System.out.println(fileName);
-		file=new File(fileName);
-		file.createNewFile();
-		// FileOutputStream fos=new FileOutputStream(PCMainFile);
-		fileWriterWithEncoding = new FileWriterWithEncoding(file,"UTF-8");
-		template.process(map, fileWriterWithEncoding);
 
 
     }
@@ -258,25 +261,25 @@ public class Application
 			String value=(String) map.get(key);
 			map.put(key, CamelNamed.camel(value));
 		}*/
-
+		String tablename=(String) map.get("table_name");
+		if(ObjectUtils.isEmpty(tablename)){
+			tablename=(String) map.get("TABLE_NAME");
+		}
 		if(map.get("module_name")==null) {
-			String tablename=(String) map.get("table_name");
 			map.put("module_name", TheStringUtil.firstWordCaseUpper(CamelNamed.camel(tablename)));
 		}
 		if(map.get("module_description")==null) {
 			String value=(String) map.get("table_comment");
-			map.put("module_description", getCoreName(value));
+			map.put("module_description", ObjectUtils.isEmpty(getCoreName(value))?"":getCoreName(value));
 		}
 		if(map.get("module_shortcut")==null) {
 			String value=(String) map.get("table_comment");
 			map.put("module_shortcut", getCoreName(value));
 		}
 		if(map.get("module_name_entity")==null) {
-			String tablename=(String) map.get("table_name");
 			map.put("module_name_entity", TheStringUtil.firstWordCaseUpper(CamelNamed.camel(tablename))+"Entity");
 		}
 		if(map.get("module_name_model")==null) {
-			String tablename=(String) map.get("table_name");
 			map.put("module_name_model", TheStringUtil.firstWordCaseUpper(CamelNamed.camel(tablename))+"Model");
 		}
 
